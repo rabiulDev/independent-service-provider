@@ -1,8 +1,17 @@
 import React, { useState } from 'react'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
 
 const Login = () => {
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -14,8 +23,9 @@ const Login = () => {
         setPassword(e.target.value)
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
+        await signInWithEmailAndPassword(email, password);
         setEmail("")
         setPassword("")
     }
