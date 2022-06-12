@@ -5,9 +5,7 @@
     object-fit: contain;
     background-position: top;
     background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
 
-}
-
-.banner-info {
-    margin-top: 12rem;
 }

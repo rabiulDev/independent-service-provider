@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "General and preventive care",
+        "description": "It may take care of purely aesthetic concerns of the patient (teeth whitening, straightening; etc…)",
+        "price": 100,
+        "img": "https://i.ibb.co/ZSTZsMT/services-1.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Cosmetic solutions",
+        "description": "Sometimes it involves Dental Filling and Bonding, which are quite simple dental procedures.",
+        "price": 110,
+        "img": "https://i.ibb.co/WvFYy4T/services-2.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Restorative solutions",
+        "description": "Just with the help of bonding and adhering materials, the damaged tooth area can be easily visually fixed.",
+        "price": 130,
+        "img": "https://i.ibb.co/MSCwnyb/services-3.jpg"
+    }
+]

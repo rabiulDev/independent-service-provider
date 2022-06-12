@@ -6,12 +6,12 @@ const Banner = () => {
         <div className='banner-container'>
             <Container>
                 <Row>
-                    <Col className='banner-info' sm='auto'>
+                    <Col sm={12} lg={6}>
                         <h1 className='text-info fs-1 fw-bolder'>Dr.Mark Hoffman</h1>
                         <p>Dr. Mark Hoffman's dental clinic welcomes you!</p>
                         <Button>Book an Appointment</Button>
                     </Col>
-                    <Col></Col>
+
                 </Row>
             </Container>
         </div>
