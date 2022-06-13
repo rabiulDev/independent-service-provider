@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import AboutUs from './AboutUs/AboutUs'
+import Blogs from './Blogs/Blogs'
 import CheckOut from './CheckOut/CheckOut'
 import ContactUs from './ContactUs/ContactUs'
 import Home from './Home/Home'
@@ -24,6 +25,7 @@ const Routers = () => {
                 </RequireAuth>
             } />
             <Route path='/about' element={<AboutUs />} />
+            <Route path='/blogs' element={<Blogs />} />
             <Route path='/*' element={<NotFound />} />
         </Routes>
     )
