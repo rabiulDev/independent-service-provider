@@ -1,6 +1,6 @@
 # Welcome to beDENTIST 
 
-Go to our live Site [beDENTIST]().
+Go to our live Site [beDENTIST](https://bedentis-2e27f.web.app/).
 
 ## The functionnalities you can use in the website.
 * You can visit out site to chose a service.
