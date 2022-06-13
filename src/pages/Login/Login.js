@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
+import google from "../../images/google.png"
 
 const Login = () => {
     const [
@@ -12,6 +13,8 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+    const [signInWithGoogle, googleSignInUser, googleSignLoading, googleSignError] = useSignInWithGoogle(auth);
+
 
     const navigate = useNavigate()
     const location = useLocation();
@@ -35,11 +38,11 @@ const Login = () => {
         setPassword("")
     }
 
-    if (loading) {
+    if (loading || googleSignLoading) {
         return <Loading></Loading>
     }
 
-    if (user) {
+    if (user || googleSignInUser) {
         navigate(from, { replace: true });
     }
 
@@ -65,6 +68,7 @@ const Login = () => {
                         <Button className='me-2' variant="primary" type="submit">
                             Login
                         </Button>
+                        <button onClick={() => signInWithGoogle()} type="button" className="btn btn-light"> <img style={{ width: "25px" }} src={google} alt="" /> Login With Google</button>
 
                     </Form>
                 </Col>

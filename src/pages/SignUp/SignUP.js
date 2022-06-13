@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { Button, Col, Container, Form, Row, } from 'react-bootstrap'
-import { Link } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from "../../firebase.init"
-import { async } from '@firebase/util';
+import google from "../../images/google.png"
+import Loading from '../Shared/Loading';
+
 
 const SignUP = () => {
     const [
@@ -11,7 +13,8 @@ const SignUP = () => {
         user,
         loading,
         error,
-    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    ] = useCreateUserWithEmailAndPassword(auth);
+    const [signInWithGoogle, googleSignInUser, googleSignLoading, googleSignError] = useSignInWithGoogle(auth);
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
     const [name, setName] = useState("");
@@ -19,6 +22,9 @@ const SignUP = () => {
     const [password, setPassword] = useState("");
     const [agree, setAgree] = useState(false);
 
+    const navigate = useNavigate()
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     const handleNameChange = (e) => {
         setName(e.target.value)
@@ -45,6 +51,14 @@ const SignUP = () => {
         setEmail("")
         setPassword("")
         setAgree(!agree)
+    }
+
+    if (loading || googleSignLoading) {
+        return <Loading></Loading>
+    }
+
+    if (user || googleSignInUser) {
+        navigate(from, { replace: true });
     }
     return (
         <Container className='p-4'>
@@ -77,6 +91,7 @@ const SignUP = () => {
                         <Button variant="success" onClick={handleReset}>
                             Reset
                         </Button>
+                        <button onClick={() => signInWithGoogle()} type="button" className="btn btn-light"> <img style={{ width: "25px" }} src={google} alt="" /> Login With Google</button>
                     </Form>
                 </Col>
             </Row>
